@@ -2,80 +2,48 @@ import React from "react";
 
 function Card(props) {
   return (
-    <div className="everything-card mt-10">
-      <div className="everything-card flex flex-wrap p-5 gap-1 mb-1">
-        <b className="title">{props.title}</b>
-        <div className="everything-card-img mx-auto">
-          <img className="everything-card-img" src={props.imgUrl} alt="img" />
-        </div>
-        <div className="description">
-          <p className="description-text leading-7">
-            {props.description?.substring(0, 200)}
-          </p>
-        </div>
-        <div className="info">
-          <div className="source-info flex items-center gap-2">
-            <span className="font-semibold">Source:</span>
-            <a
-              href={props.url}
-              target="_blank"
-              className="link underline break-words"
-            >
-              {props.source.substring(0, 70)}
-            </a>
-          </div>
-          <div className="origin flex flex-col">
-            <p className="origin-item">
-              <span className="font-semibold">Author:</span>
-              {props.author}
-            </p>
-            <p className="origin-item">
-              <span className="font-semibold">Published At:</span>
-              ({props.publishedAt})
-            </p>
-          </div>
+    <div className="w-96 bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300">
+      <div className="relative">
+        <img 
+          className="w-96 h-48 object-cover" 
+          src={props.imgUrl} 
+          alt={props.title} 
+        />
+        <div className="absolute top-0 right-0 bg-red-600 text-white px-2 py-1 m-2 rounded text-sm">
+          {props.source}
         </div>
       </div>
-
-      {/* Added the new card content with styles */}
-      <div className="flex lg:flex-row">
-        <div
-          className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-          style={{ backgroundImage: `url(${props.imageUrlLeft})` }}
-          title={props.imageLeftTitle}
-        ></div>
-        <div className="border rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-          <div className="mb-8">
-            <p className="text-sm text-gray-600 flex items-center">
-              {props.memberIcon && (
-                <svg
-                  className="fill-current text-gray-500 w-3 h-3 mr-2"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                >
-                  {props.memberIcon}
-                </svg>
-              )}
-              {props.memberText}
-            </p>
-            <div className="text-gray-900 font-bold text-xl mb-2">
-              {props.cardTitle}
+      
+      <div className="p-4">
+        <h2 className="text-xl font-bold mb-2 text-gray-800 hover:text-blue-600">
+          {props.title}
+        </h2>
+        
+        <p className="text-gray-600 text-sm mb-4">
+          {props.description?.substring(0, 150)}...
+        </p>
+        
+        <div className="border-t pt-4">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center w-48">
+              <svg className="w-4 h-4 text-gray-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
+              </svg>
+              <span className="text-sm text-gray-600 truncate">{props.author || 'Unknown Author'}</span>
             </div>
-            <p className="text-gray-700 text-base">{props.cardDescription}</p>
-          </div>
-          <div className="flex items-center">
-            {props.authorImage && (
-              <img
-                className="w-10 h-10 rounded-full mr-4"
-                src={props.authorImage}
-                alt="Avatar"
-              />
-            )}
-            <div className="text-sm">
-              <p className="text-gray-900 leading-none">{props.authorName}</p>
-              <p className="text-gray-600">{props.publishedDate}</p>
+            <div className="text-sm text-gray-500">
+              {new Date(props.publishedAt).toLocaleDateString()}
             </div>
           </div>
+          
+          <a 
+            href={props.url} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="inline-block bg-blue-600 text-white px-4 py-2 rounded-full text-sm hover:bg-blue-700 transition-colors duration-300"
+          >
+            Read More
+          </a>
         </div>
       </div>
     </div>

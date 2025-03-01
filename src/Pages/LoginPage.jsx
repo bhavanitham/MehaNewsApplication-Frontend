@@ -53,6 +53,7 @@ const LoginPage = () => {
         localStorage.setItem('email', data.email);
         setIsLoggedIn(true);
         alert('Login successful');
+        navigate('/profile');
         window.location.reload();
       } else {
         setError(data.message || 'Login failed');
