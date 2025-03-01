@@ -7,7 +7,7 @@ const NotificationPage = () => {
         const fetchNotifications = async () => {
             try {
                 const id = localStorage.getItem('userId');
-                const response = await fetch(import.meta.env.BACKEND_URL+`/notificationbyid/${id}`);
+                const response = await fetch(import.meta.env.VITE_BACKEND_URL+`/notificationbyid/${id}`);
                 const data = await response.json();
                 const filteredData = data
                     .filter(notification => notification.title !== null)

@@ -11,7 +11,7 @@ const ProfilePage = () => {
     const fetchUserData = async () => {
         const id = localStorage.getItem('userId');
         try {
-            const response = await fetch(import.meta.env.BACKEND_URL+`/userdata/${id}`);
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL+`/userdata/${id}`);
             const data = await response.json();
             setUserData(data);
         } catch (error) {
@@ -26,7 +26,7 @@ const ProfilePage = () => {
     const handleUpdate = async () => {
         setIsLoading(true);
         try {
-            const response = await fetch(import.meta.env.BACKEND_URL+'/update', {
+            const response = await fetch(import.meta.env.VITE_BACKEND_URL+'/update', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
